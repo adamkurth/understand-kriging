@@ -27,7 +27,7 @@ def semivariance(nug, sill, ran, h):
 
 # contour map 
 
-def distancematrix(X,Y):
+def distance_matrix(X,Y):
     temp_list = []
     # create the distance matrix by traversing through rows and computing each element,
     # then appending the row to the matrix
@@ -48,4 +48,11 @@ def distance_to_unknown(X1, Y1, X2, Y2):
     unknown = np.array(list)
     return unknown
 
-def ok(datax, datay, ):
+def ok(data_x, data_y, unknown_x, unknown_y, var):
+    var_1 = np.reshape(var, (var.shape[0],1)) # column and row value 
+    var_1 = var.T
+    matrix_distance_known = distance_matrix(data_x, data_y)
+    matrix_distance_unknown = distance_to_unknown(unknown_x, unknown_y, data_x, data_y)
+    n_sv = semivariance(nugget, sill, rang, matrix_distance_known)
+
+    return None 

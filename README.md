@@ -73,7 +73,7 @@ Then we are safe to use this model. Transformations of the data are acceptable t
 - Calculate the distances between all of the points, as well as the unknown value $P5$, this comprises the matrix $A$. In this matrix, we have the indices of an example element $γ(h_{13})$ is the difference in point 3 and point 1.
 - Along the $\operatorname{diag}(A)$ the distance between $γ_1 - γ_1 = 0$.
 
-$$ 
+$$
 \begin{pmatrix}
 γ(h_{11}) & γ(h_{12}) & γ(h_{13}) & 1\\
 γ(h_{21}) & γ(h_{22}) & γ(h_{23}) & 1\\
@@ -82,15 +82,16 @@ $$
 \end{pmatrix}
 \begin{pmatrix}
 e_1\\ e_2\\ e_3\\ λ
-\end{pmatrix} 
-= 
+\end{pmatrix}
+$$
+
 \begin{pmatrix}
 \gamma(h_{1P})\\
 \gamma(h_{2P})\\
 \gamma(h_{3P})\\
 1 \\
-\end{pmatrix} 
-$$ 
+\end{pmatrix}
+$$
 
 Note that from the system of equations above, we denote:
 
@@ -117,19 +118,17 @@ $$Ae=b ⇒ e = A^{-1}b$$
 
 ### Distance Matrix
 
-In 2 dimensions: $D = √[(x_2-x_1)^2 + (y_2-y_1)^2]$
+In 2 dimensions: $D = \sqrt{[(x_2-x_1)^2 + (y_2-y_1)^2]}$
 
 We obtain the distance matrix of :
 $$\begin{pmatrix}
-NA & P1 & P2 & P3 & P4\\
+X|Y & P1 & P2 & P3 & P4\\
 P1 & 0 & D_{12} &  D_{13} & D_{14}\\
 P2 & D_{21} & 0 &  D_{23} & D_{24}\\
 P3 & D_{31} &  D_{32} & 0 & D_{34}\\
 P4 & D_{41} &  D_{42} & D_{34} & 0 \\
 \end{pmatrix}
-
 \hspace{.5cm}
-
 \begin{pmatrix}
 P5 \\ D_{15} \\ D_{25} \\ D_{35} \\ D_{45}
 \end{pmatrix}
@@ -138,6 +137,7 @@ $$
 Where $NA$ and first column and row of matrix ($P1 - P4$) are used as indexing points.
 
 For each element in the matrix we apply $γ(h) = C0 + C\left( \frac{3}{2} * \frac{h}{a} - \frac{1}{2}\left( \frac{h}{a} \right)^3 \right)$ to this, as such:
+
 - $C0$ = Nugget
 - $C$ = Sill
 - $a$ = Range
@@ -151,31 +151,26 @@ $$\begin{pmatrix}
 \gamma(D_{31}) &   \gamma(D_{32}) &  \gamma(0) &  \gamma(D_{34})\\
 \gamma(D_{41}) &   \gamma(D_{42}) &  \gamma(D_{34}) &  \gamma(0) \\
 \end{pmatrix}
-\hspace{.5cm}$$ 
+\hspace{.5cm}$$
 
 Now to find the solution, we need to solve the following equation to find the weight vector, now denoted as $\hat{e} = \vec{e}$
 
-$$ 
-e 
-= 
-\hat{e} 
-=
-\begin{pmatrix} w_1 \\ w_2 \\ w_3 \\ w_4 \\ w_5 \end{pmatrix}
-= 
-A^{-1} *
+$$e = \hat{e} = \begin{pmatrix} w_1 \\ w_2 \\ w_3 \\ w_4 \\ w_5
+\end{pmatrix} A^{-1} *
 \begin{pmatrix}
 \gamma(D_{15}) \\  \gamma(D_{25}) \\  \gamma(D_{35}) \\  \gamma(D_{45})
 \end{pmatrix}
+$$
 
-= 
-\left[ 
-    \begin{pmatrix}
-    \gamma(0) &  \gamma(D_{12}) &   \gamma(D_{13}) &  \gamma(D_{14})\\
-    \gamma(D_{21}) &  \gamma(0) &   \gamma(D_{23}) &  \gamma(D_{24})\\
-    \gamma(D_{31}) &   \gamma(D_{32}) &  \gamma(0) &  \gamma(D_{34})\\
-    \gamma(D_{41}) &   \gamma(D_{42}) &  \gamma(D_{34}) &  \gamma(0) \\
-    \end{pmatrix}
-\right]^{-1} * 
+$$
+\left[
+\begin{pmatrix}
+\gamma(0) &  \gamma(D_{12}) &   \gamma(D_{13}) &  \gamma(D_{14})\\
+\gamma(D_{21}) &  \gamma(0) &   \gamma(D_{23}) &  \gamma(D_{24})\\
+\gamma(D_{31}) &   \gamma(D_{32}) &  \gamma(0) &  \gamma(D_{34})\\
+\gamma(D_{41}) &   \gamma(D_{42}) &  \gamma(D_{34}) &  \gamma(0) \\
+\end{pmatrix}
+\right]^{-1}*
 \begin{pmatrix}
 \gamma(D_{15}) \\  \gamma(D_{25}) \\  \gamma(D_{35}) \\  \gamma(D_{45})
 \end{pmatrix}
@@ -183,8 +178,8 @@ $$
 
 We obtain the solution by calculating the linear combintation of this model,
 
-$$y_{new} = w^Ty + ɛ_{new} = w_1y_1 + w_2y_2 + ⋯ + w_5y_5+ ɛ_{new}$$ 
+$$y_{new} = w^Ty + ɛ_{new} = w_1y_1 + w_2y_2 + ⋯ + w_5y_5+ ɛ_{new}$$
 
-However, for our use this will look something like this: 
+However, for our use this will look something like this:
 
 $$Z(P_5) = W_1Z(P_1) + W_2Z(P_2) + W_3Z(P_3) + W_4Z(P_4)$$
