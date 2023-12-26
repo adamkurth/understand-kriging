@@ -183,3 +183,7 @@ $$y_{new} = w^Ty + ɛ_{new} = w_1y_1 + w_2y_2 + ⋯ + w_5y_5+ ɛ_{new}$$
 However, for our use this will look something like this:
 
 $$Z(P_5) = W_1Z(P_1) + W_2Z(P_2) + W_3Z(P_3) + W_4Z(P_4)$$
+
+### Image Output
+
+- The images outputted from `main.py` displays of sample distributions with distinct points that represent sample locations from the loaded R data, and in the context of the data these are soil related to their zinc concentrations. The second image is a contoured interpolation over a geographical area, showing variations in zinc concentration across the surface. 
